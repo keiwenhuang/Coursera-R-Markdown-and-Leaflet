@@ -1,0 +1,28 @@
+---
+title: "Several Stadiums in Los Angeles"
+author: "Kevin Huang"
+date: "November 13, 2017"
+output: html_document
+---
+```{r, echo=FALSE}
+library(leaflet)
+
+stadiumLatLong <- data.frame(
+    lat = c(34.073707, 34.043882, 34.162387, 34.059203, 33.950694),
+    long = c(-118.226613, -118.253049, -118.152799, -118.438443, -118.337129)
+)
+
+stadiumSites <- c(
+    "<a href='https://losangeles.dodgers.mlb.com'>Dodger Stadium</a>",
+    "<a href='https://staplescenter.com'>Staples Center</a>",
+    "<a href='https://rosebowlstadium.com'>Rose Bowl</a>",
+    "<a href='https://maps.ucla.edu'>Jackie Robinson Stadium</a>",
+    "<a href='https://hollywoodparklife.com'>Los Angeles Stadium at Hollywood Park</a>"
+)
+
+stadiumLatLong %>%
+    leaflet() %>%
+    addTiles() %>%
+    addMarkers(popup = stadiumSites, clusterOptions = markerClusterOptions())
+
+```
